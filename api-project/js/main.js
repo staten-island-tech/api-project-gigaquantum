@@ -1,5 +1,5 @@
 // Create Search function for species
 
-console.log("connected");
-import { test } from "../js/data.js";
-test();
+async function fetchAPI(url) {
+  apiData = await (await fetch(url)).json();
+}
