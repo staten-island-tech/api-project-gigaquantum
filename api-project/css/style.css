@@ -1,0 +1,32 @@
+*,
+body,
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family: 'Unbounded', cursive;
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+.card-bin {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.card {
+    font-size: 3rem;
+    text-align: center;
+    padding: 1rem;
+    margin: 0.25rem;
+    width: 30%;
+}
+
+.card-img {
+    width: 100%;
+}
