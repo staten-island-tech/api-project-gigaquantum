@@ -12,7 +12,7 @@ h1 {
     font-size: 6rem;
 }
 
-.card-bin {
+#card-bin {
     display: flex;
     flex-wrap: wrap;
     align-content: space-around;
@@ -21,10 +21,17 @@ h1 {
 
 .card {
     font-size: 3rem;
-    text-align: center;
     padding: 1rem;
     margin: 0.25rem;
     width: 30%;
+    border-color: black;
+    border-width: 0.3rem;
+    border-style: solid;
+    display: flex;
+    align-content: space-around;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .card-img {

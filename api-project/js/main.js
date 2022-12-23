@@ -2,25 +2,36 @@
 // Image Color: https://www.npmjs.com/package/fast-average-color
 
 import "../css/style.css";
+// import { getAverageColor } from "fast-average-color-node";
 
-function addCards(country, flagImg, color) {
-  insertAdjacentHTML(
-    beforeend,
-    `<div class="card">
+function addCard(country, flagImg, demonym, color) {
+  document.getElementById("card-bin").insertAdjacentHTML(
+    "beforeend",
+    `<div class="card" style="background-color: ${color};">
   <img
     class="card-img"
-    src="https://cdn.britannica.com/69/5869-004-7D75CD05/Flag-Argentina.jpg"
-    alt="Argentinian Flag"
+    src="${flagImg}"
+    alt="${demonym} Flag"
   />
-  <h2 class="card-header">Argentina</h2>
+  <h2 class="card-header">${country}</h2>
 </div>`
-  );
+  ); //.style.backgroundColor = "red";
 }
 
 async function fetchAPI(url) {
   const apiData = await fetch(url);
   const jsonData = await apiData.json();
-  jsonData.forEach((country) => {});
+  jsonData.forEach((obj) => {
+    addCard(obj.name, obj.flag, obj.demonym, "green");
+  });
 }
 
 fetchAPI("https://restcountries.com/v2/all");
+
+/*function displayAllCards(data) {
+  data.forEach((obj) => {
+    addCard(obj.name, obj.flag, obj.demonym);
+  });
+}
+
+// displayAllCards(apiData);*/
