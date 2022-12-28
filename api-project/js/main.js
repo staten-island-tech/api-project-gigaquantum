@@ -4,10 +4,10 @@
 import "../css/style.css";
 // import { getAverageColor } from "fast-average-color-node";
 
-function addCard(country, flagImg, demonym, color) {
+function addCard(country, flagImg, demonym) {
   document.getElementById("card-bin").insertAdjacentHTML(
     "beforeend",
-    `<div class="card" style="background-color: ${color}; filter: blur(8px);">
+    `<div class="card" style="background-image: ${flagImg}; filter: blur(8px);">
   <img
     class="card-img"
     src="${flagImg}"
