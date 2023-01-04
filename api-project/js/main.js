@@ -5,10 +5,11 @@ import "../css/style.css";
 // import { getAverageColor } from "fast-average-color-node";
 
 function addCard(country, flagImg, demonym) {
+  // Make a scaled version of the flag image the background image
   // Add to background image css styling: filter: blur(20px);
   document.getElementById("card-bin").insertAdjacentHTML(
     "beforeend",
-    `<div class="card" id="${country}" style="background-image: url(${flagImg}); ">
+    `<div class="card" id="${country}">
     <img
     class="card-img"
     src="${flagImg}"
@@ -21,9 +22,13 @@ function addCard(country, flagImg, demonym) {
 
 async function fetchAPI(url) {
   try {
-    const apiData = await fetch(url);
-    const jsonData = await apiData.json();
-    return jsonData;
+    const response = await fetch(url);
+    if (response.status < 200 || response.staus > 299) {
+      throw Error(response.status);
+    } else {
+      const jsonData = await response.json();
+      return jsonData;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -35,7 +40,7 @@ function displayAllCards(data) {
   });
 }
 
-const countryData = await fetchAPI("https://restcountries.com/v2/all");
+const countryData = await fetchAPI("https://restcountries.com/v2/al1l");
 displayAllCards(countryData);
 
 /*getAverageColor(
