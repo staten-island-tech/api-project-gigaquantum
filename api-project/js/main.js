@@ -40,8 +40,8 @@ function displayAllCards(data) {
   });
 }
 
-const countryData = await fetchAPI("https://restcountries.com/v2/al1l");
-displayAllCards(countryData);
+const countryData = await fetchAPI("https://restcountries.com/v2/all");
+//displayAllCards(countryData);
 
 /*getAverageColor(
   "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
