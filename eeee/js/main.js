@@ -44,7 +44,7 @@ const countryData = await fetchAPI("https://restcountries.com/v2/all");
 //displayAllCards(countryData);
 
 /*getAverageColor(
-  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWallpaper&psig=AOvVaw09oiCk_TGxY--AicnlLUEX&ust=1673235799319000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPjkzZ6Ht_wCFQAAAAAdAAAAABAK"
 ).then((color) => {
   console.log(color);
 });*/
