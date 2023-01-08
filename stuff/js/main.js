@@ -46,8 +46,8 @@ const countryData = await fetchAPI("https://restcountries.com/v2/all");
 
 */
 
-getAverageColor(
-  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWallpaper&psig=AOvVaw09oiCk_TGxY--AicnlLUEX&ust=1673235799319000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPjkzZ6Ht_wCFQAAAAAdAAAAABAK"
-).then((color) => {
-  console.log(color);
-});
+console.log(
+  await getAverageColor(
+    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Original_William_Morris%27s_patterns%2C_digitally_enhanced_by_rawpixel_00015.jpg"
+  )
+);
