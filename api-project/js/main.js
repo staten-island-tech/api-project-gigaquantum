@@ -1,10 +1,10 @@
-/* API: https://restcountries.com/#api-endpoints-v2-code
+// API: https://restcountries.com/#api-endpoints-v2-code
 // Image Color: https://www.npmjs.com/package/fast-average-color
 
 import "../css/style.css";
-*/
-import { getAverageColor } from "fast-average-color-node";
-/*
+
+//import { getAverageColor } from "fast-average-color-node";
+
 function addCard(country, flagImg, demonym) {
   // Make a scaled version of the flag image the background image
   // Add to background image css styling: filter: blur(20px);
@@ -41,13 +41,8 @@ function displayAllCards(data) {
   });
 }
 
-const countryData = await fetchAPI("https://restcountries.com/v2/all");
-//displayAllCards(countryData);
-
-*/
-
+// const countryData = await fetchAPI("https://restcountries.com/v2/all");
+// displayAllCards(countryData);
 console.log(
-  await getAverageColor(
-    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Original_William_Morris%27s_patterns%2C_digitally_enhanced_by_rawpixel_00015.jpg"
-  )
+  await fetchAPI("https://restcountries.com/v3.1/name/aruba?fullText=true")
 );

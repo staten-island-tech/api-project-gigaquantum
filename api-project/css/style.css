@@ -32,7 +32,11 @@ h1 {
     border-color: black;
     border-width: 0.3rem;
     border-style: solid;
-    
+    display: flex;
+    align-content: space-around;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .card-content {
