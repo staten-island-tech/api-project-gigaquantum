@@ -1,9 +1,10 @@
-// API: https://restcountries.com/#api-endpoints-v2-code
+/* API: https://restcountries.com/#api-endpoints-v2-code
 // Image Color: https://www.npmjs.com/package/fast-average-color
 
 import "../css/style.css";
-// import { getAverageColor } from "fast-average-color-node";
-
+*/
+import { getAverageColor } from "fast-average-color-node";
+/*
 function addCard(country, flagImg, demonym) {
   // Make a scaled version of the flag image the background image
   // Add to background image css styling: filter: blur(20px);
@@ -43,8 +44,10 @@ function displayAllCards(data) {
 const countryData = await fetchAPI("https://restcountries.com/v2/all");
 //displayAllCards(countryData);
 
-/*getAverageColor(
+*/
+
+getAverageColor(
   "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWallpaper&psig=AOvVaw09oiCk_TGxY--AicnlLUEX&ust=1673235799319000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCPjkzZ6Ht_wCFQAAAAAdAAAAABAK"
 ).then((color) => {
   console.log(color);
-});*/
+});
