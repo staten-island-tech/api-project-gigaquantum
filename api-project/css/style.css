@@ -15,6 +15,7 @@ body {
 
 h1 {
     font-size: 6rem;
+    text-align: center;
 }
 
 #card-bin {
@@ -66,4 +67,19 @@ h1 {
 
 .card-img {
     width: 100%;
+}
+
+.expanded-card {
+    font-size: 3rem;
+    padding: 1rem;
+    margin: 0.25rem;
+    width: 90%;
+    border-color: black;
+    border-width: 0.3rem;
+    border-style: solid;
+    display: flex;
+    align-content: space-around;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
 }
