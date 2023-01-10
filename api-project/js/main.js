@@ -41,6 +41,12 @@ function displayAllCards(data) {
   });
 }
 
+function displayExpandedCard()
+
+document.getElementsByClassName("card").forEach((card) => {
+  card.addEventListener("click", displayExpandedCard(card.id));
+});
+
 // const countryData = await fetchAPI("https://restcountries.com/v2/all");
 // displayAllCards(countryData);
 const aruba = [
