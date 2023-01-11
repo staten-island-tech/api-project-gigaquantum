@@ -41,7 +41,7 @@ function displayAllCards(data) {
   });
 }
 
-function displayExpandedCard()
+function displayExpandedCard() {}
 
 document.getElementsByClassName("card").forEach((card) => {
   card.addEventListener("click", displayExpandedCard(card.id));
