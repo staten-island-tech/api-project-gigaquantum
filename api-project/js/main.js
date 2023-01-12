@@ -21,6 +21,44 @@ function addCard(country, flagImg, demonym) {
   );
 }
 
+function removeAll(elementClass) {
+  document
+    .querySelectorAll(elementClass)
+    .forEach((element) => element.remove());
+}
+
+function addExpandedCard(
+  country,
+  flagImg,
+  demonym,
+  population,
+  area,
+  timeZones,
+  capital,
+  currencies,
+  languages
+) {
+  document.getElementById("card-bin").insertAdjacentHTML(
+    "beforeend",
+    `<div class="expanded-card">
+        <img
+          class="card-img"
+          src="${flagImg}"
+          alt="${demonym} Flag"
+        />
+        <h2 class="card-header">${country}</h2>
+        <div class="expanded-info">
+          <p>Population: ${population}</p>
+          <p>Area: ${area} km<sup>2</sup></p>
+          <p>Time Zones: ${timeZones}</p>
+          <p>Capital: ${capital}</p>
+          <p>Curriencies: ${currencies}</p>
+          <p>Languages: ${languages}</p>
+        </div>
+      </div>`
+  );
+}
+
 async function fetchAPI(url) {
   try {
     const response = await fetch(url);
@@ -41,15 +79,32 @@ function displayAllCards(data) {
   });
 }
 
-function displayExpandedCard() {}
+function displayExpandedCard(cardID, data) {
+  const country = data.filter((country) => (country.name = cardID));
+  removeAll("card");
+  addExpandedCard(
+    country.name,
+    country.flag,
+    country.demonym,
+    country.population,
+    country.area,
+    country.timezones,
+    country.capital,
+    country.currencies,
+    country.languages
+  );
+}
 
-document.getElementsByClassName("card").forEach((card) => {
-  card.addEventListener("click", displayExpandedCard(card.id));
+const countryData = await fetchAPI("https://restcountries.com/v2/all");
+displayAllCards(countryData);
+
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("click", function () {
+    displayExpandedCard(card.id, countryData);
+  });
 });
 
-// const countryData = await fetchAPI("https://restcountries.com/v2/all");
-// displayAllCards(countryData);
-const aruba = [
+/*const aruba = [
   {
     name: {
       common: "Aruba",
@@ -228,3 +283,4 @@ const aruba = [
     },
   },
 ];
+}*/
