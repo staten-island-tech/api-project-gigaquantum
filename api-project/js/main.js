@@ -21,10 +21,8 @@ function addCard(country, flagImg, demonym) {
   );
 }
 
-function removeAll(elementClass) {
-  document
-    .querySelectorAll(elementClass)
-    .forEach((element) => element.remove());
+function removeAll(selector) {
+  document.querySelectorAll(selector).forEach((item) => item.remove());
 }
 
 function addExpandedCard(
@@ -74,24 +72,25 @@ async function fetchAPI(url) {
 }
 
 function displayAllCards(data) {
+  removeAll(".expanded-card");
   data.forEach((obj) => {
     addCard(obj.name, obj.flag, obj.demonym);
   });
 }
 
 function displayExpandedCard(cardID, data) {
-  const country = data.filter((country) => (country.name = cardID));
-  removeAll("card");
+  const country = data.filter((country) => country.name == cardID);
+  removeAll(".card");
   addExpandedCard(
-    country.name,
-    country.flag,
-    country.demonym,
-    country.population,
-    country.area,
-    country.timezones,
-    country.capital,
-    country.currencies,
-    country.languages
+    country[0].name,
+    country[0].flag,
+    country[0].demonym,
+    country[0].population,
+    country[0].area,
+    country[0].timezones,
+    country[0].capital,
+    country[0].currencies,
+    country[0].languages
   );
 }
 
