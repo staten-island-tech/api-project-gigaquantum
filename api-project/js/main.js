@@ -80,6 +80,14 @@ function displayAllCards(data) {
 
 function displayExpandedCard(cardID, data) {
   const country = data.filter((country) => country.name == cardID);
+  function getLanguages() {
+    let languages = "";
+    for (let key in country[0].languages) {
+      languages = `${languages}, ${country[0].languages[key].name}`;
+    }
+    return languages;
+  }
+  console.log(getLanguages());
   removeAll(".card");
   addExpandedCard(
     country[0].name,
