@@ -22,26 +22,36 @@ function removeAll(selector) {
 }
 
 function propretyNameConverter(string, conversionDirection) {
-  let convertedString = string;
+  let convertedString = Array.from(string);
   if (conversionDirection == "toTitle") {
-    for (let i = 1; i <= string.length; i++) {
-      if (convertedString.charAt(i).toUpperCase() == true) {
-        // Becuase characters are being added, count from i will be off
-        convertedString = convertedString.replace(
-          convertedString.charAt(i),
-          ` ${convertedString.charAt(i)}`
-        );
+    for (let i = 1; i++; ) {
+      if (i >= convertedString.length) {
+        break;
+      }
+      if (convertedString[i] == convertedString[i].toUpperCase()) {
+        convertedString[i] = ` ${convertedString[i]}`;
       }
     }
-    convertedString = convertedString.charAt(i).toUpperCase();
+    convertedString[0] = convertedString[0].toUpperCase();
   } else if (conversionDirection == "toProperty") {
+    for (let i = 1; i++; ) {
+      if (i >= convertedString.length) {
+        break;
+      }
+      if (convertedString[i] == " ") {
+        convertedString[i] = "";
+      }
+    }
+    convertedString[0] = convertedString[0].toLowerCase();
   } else if (conversionDirection != "toProperty" || "toTitle") {
     console.log(
       `Error while executing the function propretyNameConverter: no conversionDirection specified`
     );
   }
-  return convertedString;
+  return convertedString.toString().replaceAll(",", "");
 }
+
+console.log(propretyNameConverter("New Members", "toProperty"));
 
 function addExpandedCard(
   country,
