@@ -1,24 +1,6 @@
 // API: https://restcountries.com/#api-endpoints-v2-code
-// Image Color: https://www.npmjs.com/package/fast-average-color
 
-/*
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <style>
-      
-    </style>
-  </head>
-  <body>
-    
-  </body>
-</html>
-*/
 import "../css/style.css";
-
-//import { getAverageColor } from "fast-average-color-node";
-
 function addCard(country, flagImg, demonym) {
   // Make a scaled version of the flag image the background image
   // Add to background image css styling: filter: blur(20px);
@@ -37,6 +19,28 @@ function addCard(country, flagImg, demonym) {
 
 function removeAll(selector) {
   document.querySelectorAll(selector).forEach((item) => item.remove());
+}
+
+function propretyNameConverter(string, conversionDirection) {
+  let convertedString = string;
+  if (conversionDirection == "toTitle") {
+    for (let i = 1; i <= string.length; i++) {
+      if (convertedString.charAt(i).toUpperCase() == true) {
+        // Becuase characters are being added, count from i will be off
+        convertedString = convertedString.replace(
+          convertedString.charAt(i),
+          ` ${convertedString.charAt(i)}`
+        );
+      }
+    }
+    convertedString = convertedString.charAt(i).toUpperCase();
+  } else if (conversionDirection == "toProperty") {
+  } else if (conversionDirection != "toProperty" || "toTitle") {
+    console.log(
+      `Error while executing the function propretyNameConverter: no conversionDirection specified`
+    );
+  }
+  return convertedString;
 }
 
 function addExpandedCard(
