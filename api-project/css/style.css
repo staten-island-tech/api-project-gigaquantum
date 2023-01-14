@@ -1,87 +1,129 @@
+/* overflow: hidden; */
+
 *,
 body,
 html {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 62.5%;
-    font-family: 'Unbounded', cursive;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: "Unbounded", cursive;
 }
 
 body {
-    /* Test image to test background image blur */
-    background-image: url(https://lumiere-a.akamaihd.net/v1/images/sa_pixar_virtualbg_coco_16x9_9ccd7110.jpeg?region=0,0,1920,1080&width=768);
+  /* Test image to test background image blur */
+  background-color: #e0e0e0;
 }
 
 h1 {
-    font-size: 6rem;
-    text-align: center;
+  font-size: 6rem;
+  text-align: center;
+}
+
+#head-bin {
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  margin-bottom: 5rem;
+  padding: 1.5rem;
 }
 
 #card-bin {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
 }
 
 .card {
-    font-size: 3rem;
-    padding: 1rem;
-    margin: 0.25rem;
-    width: 30%;
-    border-color: black;
-    border-width: 0.3rem;
-    border-style: solid;
-    display: flex;
-    align-content: space-around;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    text-align: center;
+  font-size: 5rem;
+  padding: 2rem;
+  margin: 1rem;
+  width: 30%;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .card-content {
-    z-index: 2;
-    display: flex;
-    align-content: space-around;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    text-align: center;
-    position: relative; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .card-background {
-    z-index: 1;
-    filter: blur(12px);
-    -webkit-filter: blur(12px);
-    width: 100%;
-    height: 100%;
-    position: relative; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  z-index: 1;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .card-img {
-    width: 100%;
+  width: 80%;
+  border-radius: 50px;
+}
+
+.expanded-img {
+  width: 50%;
+  border-radius: 50px;
 }
 
 .expanded-card {
-    background-color: rgb(17, 119, 207);
-    font-size: 3rem;
-    padding: 1rem;
-    margin: 0.25rem;
-    width: 90%;
-    border-color: black;
-    border-width: 0.3rem;
-    border-style: solid;
-    display: flex;
-    align-content: space-around;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    text-align: center;
-    flex-direction: column;
+  background-color: rgb(17, 119, 207);
+  font-size: 3rem;
+  padding: 2rem;
+  margin: 1rem;
+  width: 80%;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  flex-direction: row;
+}
+
+.expanded-content {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  flex-direction: column;
+}
+
+.expanded-info {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+.expanded-header {
+  font-size: 4rem;
+  margin: 1rem;
+}
+
+.remove-btn {
+  width: fit-content;
+  padding: 0.5rem;
+  font-size: 2rem;
+  align-self: center;
 }

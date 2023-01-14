@@ -40,18 +40,19 @@ function addExpandedCard(
     "beforeend",
     `<div class="expanded-card">
         <img
-          class="card-img"
+          class="expanded-img"
           src="${flagImg}"
           alt="${demonym} Flag"
         />
-        <h2 class="card-header">${country}</h2>
-        <div class="expanded-info">
-          <p>Population: ${population}</p>
-          <p>Area: ${area} km<sup>2</sup></p>
-          <p>Time Zones: ${timeZones}</p>
-          <p>Capital: ${capital}</p>
-          <p>Curriencies: ${currencies}</p>
-          <p>Languages: ${languages}</p>
+        <div class="expanded-content">
+        <h2 class="expanded-header">${country}</h2>
+          <p class="expanded-info">Population: ${population}</p>
+          <p class="expanded-info">Area: ${area} km<sup>2</sup></p>
+          <p class="expanded-info">Time Zones: ${timeZones}</p>
+          <p class="expanded-info">Capital: ${capital}</p>
+          <p class="expanded-info">Curriencies: ${currencies}</p>
+          <p class="expanded-info">Languages: ${languages}</p>
+          <button class="remove-btn">Close</button>
         </div>
       </div>`
   );
@@ -75,6 +76,11 @@ function displayAllCards(data) {
   removeAll(".expanded-card");
   data.forEach((obj) => {
     addCard(obj.name, obj.flag, obj.demonym);
+  });
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("click", function () {
+      displayExpandedCard(card.id, countryData);
+    });
   });
 }
 
@@ -120,16 +126,15 @@ function displayExpandedCard(cardID, data) {
     getUnnamedProperty(country[0], "currencies", "name"),
     getUnnamedProperty(country[0], "languages", "name")
   );
+  document.querySelectorAll(".remove-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      displayAllCards(countryData);
+    });
+  });
 }
 
 const countryData = await fetchAPI("https://restcountries.com/v2/all");
 displayAllCards(countryData);
-
-document.querySelectorAll(".card").forEach((card) => {
-  card.addEventListener("click", function () {
-    displayExpandedCard(card.id, countryData);
-  });
-});
 
 /*const aruba = [
   {
