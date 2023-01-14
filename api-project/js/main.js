@@ -1,6 +1,20 @@
 // API: https://restcountries.com/#api-endpoints-v2-code
 // Image Color: https://www.npmjs.com/package/fast-average-color
 
+/*
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    
+  </body>
+</html>
+*/
 import "../css/style.css";
 
 //import { getAverageColor } from "fast-average-color-node";
