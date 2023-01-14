@@ -78,16 +78,36 @@ function displayAllCards(data) {
   });
 }
 
+function getLanguages(object) {
+  let languages = "";
+  let seperator = "";
+  for (let key in object.languages) {
+    if (languages == "") {
+      seperator = "";
+    } else {
+      seperator = ", ";
+    }
+    languages = `${languages}${seperator}${object.languages[key].name}`;
+  }
+  return languages;
+}
+
+function getUnnamedProperty(object, selectedProperty, targetProperty) {
+  let values = "";
+  let seperator = "";
+  for (let key in object[selectedProperty]) {
+    if (values == "") {
+      seperator = "";
+    } else {
+      seperator = ", ";
+    }
+    values = `${values}${seperator}${object[selectedProperty][key][targetProperty]}`;
+  }
+  return values;
+}
+
 function displayExpandedCard(cardID, data) {
   const country = data.filter((country) => country.name == cardID);
-  function getLanguages() {
-    let languages = "";
-    for (let key in country[0].languages) {
-      languages = `${languages}, ${country[0].languages[key].name}`;
-    }
-    return languages;
-  }
-  console.log(getLanguages());
   removeAll(".card");
   addExpandedCard(
     country[0].name,
@@ -97,8 +117,8 @@ function displayExpandedCard(cardID, data) {
     country[0].area,
     country[0].timezones,
     country[0].capital,
-    country[0].currencies,
-    country[0].languages
+    getUnnamedProperty(country[0], "currencies", "name"),
+    getUnnamedProperty(country[0], "languages", "name")
   );
 }
 
