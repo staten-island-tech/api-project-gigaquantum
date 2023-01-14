@@ -43,15 +43,16 @@ function propretyNameConverter(string, conversionDirection) {
       }
     }
     convertedString[0] = convertedString[0].toLowerCase();
-  } else if (conversionDirection != "toProperty" || "toTitle") {
+  } else if (
+    conversionDirection != "toProperty" &&
+    conversionDirection != "toTitle"
+  ) {
     console.log(
       `Error while executing the function propretyNameConverter: no conversionDirection specified`
     );
   }
   return convertedString.toString().replaceAll(",", "");
 }
-
-console.log(propretyNameConverter("New Members", "toProperty"));
 
 function addExpandedCard(
   country,
@@ -140,19 +141,28 @@ function getUnnamedProperty(object, selectedProperty, targetProperty) {
   return values;
 }
 
+function undefinedCatch(string) {
+  if (string == undefined || string == "") {
+    return "None";
+  } else {
+    return string;
+  }
+}
+
 function displayExpandedCard(cardID, data) {
   const country = data.filter((country) => country.name == cardID);
+  const timezones = country[0].timezones.toString().replaceAll(",", ", ");
   removeAll(".card");
   addExpandedCard(
-    country[0].name,
-    country[0].flag,
-    country[0].demonym,
-    country[0].population,
-    country[0].area,
-    country[0].timezones,
-    country[0].capital,
-    getUnnamedProperty(country[0], "currencies", "name"),
-    getUnnamedProperty(country[0], "languages", "name")
+    undefinedCatch(country[0].name),
+    undefinedCatch(country[0].flag),
+    undefinedCatch(country[0].demonym),
+    undefinedCatch(country[0].population),
+    undefinedCatch(country[0].area),
+    undefinedCatch(timezones),
+    undefinedCatch(country[0].capital),
+    undefinedCatch(getUnnamedProperty(country[0], "currencies", "name")),
+    undefinedCatch(getUnnamedProperty(country[0], "languages", "name"))
   );
   document.querySelectorAll(".remove-btn").forEach((btn) => {
     btn.addEventListener("click", function () {

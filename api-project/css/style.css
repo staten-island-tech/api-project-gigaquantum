@@ -18,7 +18,7 @@ body {
 h1 {
   font-size: 6rem;
   text-align: center;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 #head-bin {
@@ -26,7 +26,7 @@ h1 {
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
   margin-bottom: 5rem;
   padding: 1.5rem;
-  opacity: 0.75;
+  /* opacity: 0.75; */
 }
 
 #card-bin {
@@ -50,7 +50,7 @@ h1 {
   flex-direction: column;
   flex-wrap: wrap;
   text-align: center;
-  opacity: 0.75;
+  /* opacity: 0.75; */
 }
 
 /* (Start of) Currently not referred to in code */
@@ -83,13 +83,13 @@ h1 {
 .card-img {
   width: 80%;
   border-radius: 50px;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .expanded-img {
   width: 50%;
   border-radius: 50px;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .expanded-card {
@@ -107,7 +107,7 @@ h1 {
   flex-wrap: wrap;
   text-align: center;
   flex-direction: row;
-  opacity: 0.75;
+  /* opacity: 0.75; */
 }
 
 .expanded-content {
@@ -117,7 +117,7 @@ h1 {
   flex-wrap: wrap;
   text-align: center;
   flex-direction: column;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .expanded-info {
@@ -139,7 +139,7 @@ h1 {
 
 /* Dynamic Background Code from https://pocoloco.io/ */
 
-.background--custom {
+/* .background--custom {
   background-color: #ffffff;
   width: 100vw;
   height: 100vh;
@@ -161,3 +161,4 @@ canvas#canvas {
   --gradient-color-4: #979797;
   --gradient-speed: 0.0000125;
 }
+ */
