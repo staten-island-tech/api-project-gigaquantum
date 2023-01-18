@@ -97,7 +97,7 @@ h1 {
   font-size: 3rem;
   padding: 2rem;
   margin: 1rem;
-  width: 80%;
+  width: 90%;
   border-radius: 50px;
   background: #e0e0e0;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
@@ -137,6 +137,30 @@ h1 {
   align-self: center;
 }
 
+.card-header {
+  margin: 1rem;
+}
+
+.expanded-info-type {
+  font-style: italic;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 1180px) {
+  .card {
+    width: 45%;
+  }
+  .expanded-img {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: 90%;
+  }
+}
+
 /* Dynamic Background Code from https://pocoloco.io/ */
 
 /* .background--custom {
@@ -161,4 +185,4 @@ canvas#canvas {
   --gradient-color-4: #979797;
   --gradient-speed: 0.0000125;
 }
- */
+ */ ;

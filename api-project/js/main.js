@@ -1,6 +1,7 @@
 // API: https://restcountries.com/#api-endpoints-v2-code
 
 import "../css/style.css";
+
 function addCard(country, flagImg, demonym) {
   // Make a scaled version of the flag image the background image
   // Add to background image css styling: filter: blur(20px);
@@ -75,12 +76,12 @@ function addExpandedCard(
         />
         <div class="expanded-content">
         <h2 class="expanded-header">${country}</h2>
-          <p class="expanded-info">Population: ${population}</p>
-          <p class="expanded-info">Area: ${area} km<sup>2</sup></p>
-          <p class="expanded-info">Time Zones: ${timeZones}</p>
-          <p class="expanded-info">Capital: ${capital}</p>
-          <p class="expanded-info">Curriencies: ${currencies}</p>
-          <p class="expanded-info">Languages: ${languages}</p>
+          <p class="expanded-info"><span class="expanded-info-type">Population:</span> ${population}</p>
+          <p class="expanded-info"><span class="expanded-info-type">Area:</span> ${area} km<sup>2</sup></p>
+          <p class="expanded-info"><span class="expanded-info-type">Time Zones:</span> ${timeZones}</p>
+          <p class="expanded-info"><span class="expanded-info-type">Capital:</span> ${capital}</p>
+          <p class="expanded-info"><span class="expanded-info-type">Curriencies:</span> ${currencies}</p>
+          <p class="expanded-info"><span class="expanded-info-type">Languages:</span> ${languages}</p>
           <button class="remove-btn">Close</button>
         </div>
       </div>`
@@ -98,6 +99,7 @@ async function fetchAPI(url) {
     }
   } catch (error) {
     console.log(error);
+    alert(error);
   }
 }
 
