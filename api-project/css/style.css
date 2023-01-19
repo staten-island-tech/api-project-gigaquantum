@@ -88,7 +88,10 @@ h1 {
 
 .expanded-img {
   width: 50%;
+  height: fit-content;
   border-radius: 50px;
+  display: flex;
+  align-self: center;
   /* opacity: 1; */
 }
 
@@ -107,6 +110,7 @@ h1 {
   flex-wrap: wrap;
   text-align: center;
   flex-direction: row;
+  align-self: center;
   /* opacity: 0.75; */
 }
 
@@ -146,6 +150,17 @@ h1 {
   font-size: 2rem;
 }
 
+.btn-bin {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.filter-btn {
+  font-size: 2rem;
+}
+
 @media screen and (max-width: 1180px) {
   .card {
     width: 45%;
@@ -155,7 +170,7 @@ h1 {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
   .card {
     width: 90%;
   }
