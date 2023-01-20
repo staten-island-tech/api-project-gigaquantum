@@ -1,9 +1,14 @@
+// API: https://restcountries.com/#api-endpoints-v2-code
+
 import "../css/style.css";
-import { cardFunctions, buttonFunctions } from "./functions.js";
-import { countryData } from "./api.js";
+import { cardFunctions, buttonFunctions, apiFunctions } from "./functions.js";
+
+const countryData = await apiFunctions.fetchAPI(
+  "https://restcountries.com/v2/all"
+);
+export { countryData };
 
 cardFunctions.displayAllCards(countryData);
-
 buttonFunctions.addAllBtns([
   [
     "americas-btn",
