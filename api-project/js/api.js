@@ -70,8 +70,9 @@ const apiFunctions = {
   },
 };
 
-const countryData = await apiFunctions.fetchAPI(
-  "https://restcountries.com/v2/all"
-);
+let countryData;
+apiFunctions
+  .fetchAPI("https://restcountries.com/v2/all")
+  .then((apiData) => (countryData = apiData));
 
 export { countryData, apiFunctions };
