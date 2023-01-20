@@ -1,4 +1,4 @@
-import { countryData, apiFunctions } from "./api.js";
+import { countryData } from "./api.js";
 
 const cardFunctions = {
   addCard: function (country, flagImg, demonym) {
