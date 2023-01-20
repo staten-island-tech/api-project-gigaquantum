@@ -70,9 +70,6 @@ const apiFunctions = {
   },
 };
 
-let countryData;
-apiFunctions
-  .fetchAPI("https://restcountries.com/v2/all")
-  .then((apiData) => (countryData = apiData));
+const countryData = apiFunctions.fetchAPI("https://restcountries.com/v2/all");
 
 export { countryData, apiFunctions };
