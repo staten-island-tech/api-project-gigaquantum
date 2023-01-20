@@ -2,11 +2,7 @@
 
 import "../css/style.css";
 import { cardFunctions, buttonFunctions, apiFunctions } from "./functions.js";
-
-const countryData = await apiFunctions.fetchAPI(
-  "https://restcountries.com/v2/all"
-);
-export { countryData };
+import { countryData } from "./api.js";
 
 cardFunctions.displayAllCards(countryData);
 buttonFunctions.addAllBtns([
