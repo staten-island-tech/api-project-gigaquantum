@@ -60,6 +60,7 @@ const cardFunctions = {
   displayExpandedCard: function (cardID, data) {
     const country = data.filter((country) => country.name == cardID);
     cardFunctions.removeAll(".card");
+    cardFunctions.removeAll(".filter-btn");
     cardFunctions.addExpandedCard(
       apiFunctions.undefinedCatch(country[0].name),
       apiFunctions.undefinedCatch(country[0].flag),
@@ -80,6 +81,58 @@ const cardFunctions = {
     document.querySelectorAll(".remove-btn").forEach((btn) => {
       btn.addEventListener("click", function () {
         cardFunctions.displayAllCards(countryData);
+        buttonFunctions.addAllBtns([
+          [
+            "americas-btn",
+            "Americas",
+            countryData.filter((country) => country.region == "Americas"),
+          ],
+          [
+            "europe-btn",
+            "Europe",
+            countryData.filter((country) => country.region == "Europe"),
+          ],
+          [
+            "asia-btn",
+            "Asia",
+            countryData.filter((country) => country.region == "Asia"),
+          ],
+          [
+            "africa-btn",
+            "Africa",
+            countryData.filter((country) => country.region == "Africa"),
+          ],
+          [
+            "]oceania-btn",
+            "Oceania",
+            countryData.filter((country) => country.region == "Oceania"),
+          ],
+          [
+            "antarctica-btn",
+            "Antarctica",
+            countryData.filter((country) => country.subregion == "Antarctica"),
+          ],
+          [
+            "pop-greater-btn",
+            "Population &gt; 100,000,000",
+            countryData.filter((country) => country.population > 100000000),
+          ],
+          [
+            "pop-less-btn",
+            "Population &lt; 100,000,000",
+            countryData.filter((country) => country.population < 100000000),
+          ],
+          [
+            "area-greater-btn",
+            "Area &gt; 100,000",
+            countryData.filter((country) => country.area > 100000),
+          ],
+          [
+            "area-less-btn",
+            "Area &lt; 100,000",
+            countryData.filter((country) => country.area < 100000),
+          ],
+        ]);
       });
     });
   },
@@ -89,123 +142,58 @@ const cardFunctions = {
   resetAll: function () {
     cardFunctions.removeAll(".card");
     cardFunctions.removeAll(".expanded-card");
-    cardFunctions.displayAllCards();
+    cardFunctions.displayAllCards(countryData);
     buttonFunctions.resetButtons(".filter-btn");
     console.log("reset");
-  },
-};
-
-const filterFunctions = {
-  filterByMatch: function (obj, filterType, targetValue) {
-    obj
-      .filter((element) => element[filterType] == targetValue)
-      .forEach((filteredDatapoint) => {
-        cardFunctions.addCard(
-          filteredDatapoint.country,
-          filteredDatapoint.flagImg,
-          filteredDatapoint.demonym
-        );
-      });
-  },
-  compareGreater: function (obj, filterType, targetValue) {
-    gpuData
-      .filter((gpu) => gpu[filterType] > targetValue)
-      .forEach((filteredDatapoint) => {
-        cardFunctions.addCard(
-          filteredDatapoint.country,
-          filteredDatapoint.flagImg,
-          filteredDatapoint.demonym
-        );
-      });
-  },
-  compareLess: function (filterType, targetValue) {
-    gpuData
-      .filter((gpu) => gpu[filterType] < targetValue)
-      .forEach((filteredDatapoint) => {
-        cardFunctions.addCard(
-          filteredDatapoint.country,
-          filteredDatapoint.flagImg,
-          filteredDatapoint.demonym
-        );
-      });
-  },
-  filterByCompare: function (filterType, targetValue, greaterOrLess) {
-    if (greaterOrLess == "greater") {
-      filterFunctions.compareGreater(filterType, targetValue);
-    } else {
-      filterFunctions.compareLess(filterType, targetValue);
-    }
-  },
-  displayFilteredItems: function (
-    obj,
-    filterType,
-    targetValue,
-    filterMethod,
-    greaterOrLess
-  ) {
-    if (filterMethod == "match") {
-      filterFunctions.filterByMatch(filterType, targetValue);
-    }
-    if (filterMethod == "compare") {
-      filterFunctions.filterByCompare(filterType, targetValue, greaterOrLess);
-    }
   },
 };
 
 const buttonFunctions = {
   resetButtons: function (selector) {
     document.querySelectorAll(selector).forEach((btn) => {
-      btn.style.color = "var(--accent-color)";
-      btn.style.backgroundColor = "var(--button-background)";
+      btn.style.color = "";
+      btn.style.backgroundColor = "";
     });
   },
   highlightButton: function (btnID) {
-    document.getElementById(btnID).style.color = "var(--text-highlighted)";
-    document.getElementById(btnID).style.backgroundColor =
-      "var(--button-highlighted)";
+    document.getElementById(btnID).style.color = "#e0e0e0";
+    document.getElementById(btnID).style.backgroundColor = "#1f1f1f";
   },
-  activateFilter: function (
-    btnID,
-    filterType,
-    targetValue,
-    filterMethod,
-    greaterOrLess
-  ) {
+  addFilterBtn: function (btnID, btnText, data) {
     buttonFunctions.resetButtons(".filter-btn");
-    buttonFunctions.highlightButton(btnID);
-    cardFunctions.removeAllCards(".item-card");
-    filterFunctions.displayFilteredItems(
-      filterType,
-      targetValue,
-      filterMethod,
-      greaterOrLess
-    );
-  },
-  filterEventListener: function (
-    btnID,
-    filterType,
-    targetValue,
-    filterMethod,
-    greaterOrLess
-  ) {
-    document.getElementById(btnID).addEventListener("click", function () {
-      buttonFunctions.activateFilter(
-        document.getElementById(btnID).id,
-        filterType,
-        targetValue,
-        filterMethod,
-        greaterOrLess
+    document
+      .getElementById("btn-bin")
+      .insertAdjacentHTML(
+        "beforeend",
+        `<button class="filter-btn" id="${btnID}">${btnText}</button>`
       );
+    document.getElementById(btnID).addEventListener("click", function () {
+      buttonFunctions.resetButtons(".filter-btn");
+      buttonFunctions.highlightButton(btnID);
+      cardFunctions.removeAll(".card");
+      cardFunctions.removeAll(".expanded-card");
+      cardFunctions.displayAllCards(data);
     });
   },
-  toggleTheme: function () {
-    if (document.body.classList.contains("main-theme")) {
-      document.body.classList.remove("main-theme");
-      document.body.classList.add("alt-theme");
-    } else {
-      document.body.classList.remove("alt-theme");
-      document.body.classList.add("main-theme");
-    }
+  addResetBtn: function (data) {
+    document
+      .getElementById("btn-bin")
+      .insertAdjacentHTML(
+        "beforeend",
+        `<button class="filter-btn" id="reset-btn">Reset</button>`
+      );
+    document.getElementById("reset-btn").addEventListener("click", function () {
+      buttonFunctions.resetButtons(".filter-btn");
+      cardFunctions.removeAll(".card");
+      cardFunctions.removeAll(".expanded-card");
+      cardFunctions.displayAllCards(data);
+    });
+  },
+  addAllBtns: function (array) {
+    array.forEach((set) =>
+      buttonFunctions.addFilterBtn(set[0], set[1], set[2])
+    );
+    buttonFunctions.addResetBtn(countryData);
   },
 };
 
@@ -279,4 +267,4 @@ const apiFunctions = {
   },
 };
 
-export { cardFunctions, filterFunctions, buttonFunctions, apiFunctions };
+export { cardFunctions, buttonFunctions, apiFunctions };

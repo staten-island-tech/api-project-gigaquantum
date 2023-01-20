@@ -150,7 +150,7 @@ h1 {
   font-size: 2rem;
 }
 
-.btn-bin {
+#btn-bin {
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
@@ -175,29 +175,3 @@ h1 {
     width: 90%;
   }
 }
-
-/* Dynamic Background Code from https://pocoloco.io/ */
-
-/* .background--custom {
-  background-color: #ffffff;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  overflow: hidden;
-  z-index: -2;
-  top: 0;
-  left: 0;
-}
-canvas#canvas {
-  z-index: -1;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  transform: rotate(0deg) scale(2) translateY(0%);
-  --gradient-color-1: #e0e0e0;
-  --gradient-color-2: #bebebe;
-  --gradient-color-3: #fffdfd;
-  --gradient-color-4: #979797;
-  --gradient-speed: 0.0000125;
-}
- */ ;
