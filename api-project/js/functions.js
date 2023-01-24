@@ -1,4 +1,4 @@
-import { countryData } from "./api.js";
+import { apiFunctions } from "./api.js";
 
 const cardFunctions = {
   addCard: function (country, flagImg, demonym) {
@@ -21,7 +21,7 @@ const cardFunctions = {
     });
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("click", function () {
-        cardFunctions.displayExpandedCard(card.id, countryData);
+        cardFunctions.displayExpandedCard(card.id, data);
       });
     });
   },
@@ -57,8 +57,8 @@ const cardFunctions = {
         </div>`
     );
   },
-  displayExpandedCard: function (cardID, data) {
-    const country = data.filter((country) => country.name == cardID);
+  displayExpandedCard: function (cardID, countryData) {
+    const country = countryData.filter((country) => country.name == cardID);
     cardFunctions.removeAll(".card");
     cardFunctions.removeAll(".filter-btn");
     cardFunctions.addExpandedCard(
@@ -81,65 +81,14 @@ const cardFunctions = {
     document.querySelectorAll(".remove-btn").forEach((btn) => {
       btn.addEventListener("click", function () {
         cardFunctions.displayAllCards(countryData);
-        buttonFunctions.addAllBtns([
-          [
-            "americas-btn",
-            "Americas",
-            countryData.filter((country) => country.region == "Americas"),
-          ],
-          [
-            "europe-btn",
-            "Europe",
-            countryData.filter((country) => country.region == "Europe"),
-          ],
-          [
-            "asia-btn",
-            "Asia",
-            countryData.filter((country) => country.region == "Asia"),
-          ],
-          [
-            "africa-btn",
-            "Africa",
-            countryData.filter((country) => country.region == "Africa"),
-          ],
-          [
-            "]oceania-btn",
-            "Oceania",
-            countryData.filter((country) => country.region == "Oceania"),
-          ],
-          [
-            "antarctica-btn",
-            "Antarctica",
-            countryData.filter((country) => country.subregion == "Antarctica"),
-          ],
-          [
-            "pop-greater-btn",
-            "Population &gt; 100,000,000",
-            countryData.filter((country) => country.population > 100000000),
-          ],
-          [
-            "pop-less-btn",
-            "Population &lt; 100,000,000",
-            countryData.filter((country) => country.population < 100000000),
-          ],
-          [
-            "area-greater-btn",
-            "Area &gt; 100,000",
-            countryData.filter((country) => country.area > 100000),
-          ],
-          [
-            "area-less-btn",
-            "Area &lt; 100,000",
-            countryData.filter((country) => country.area < 100000),
-          ],
-        ]);
+        buttonFunctions.addAllBtns(buttonFunctions.buttonArray(countryData));
       });
     });
   },
   removeAll: function (selector) {
     document.querySelectorAll(selector).forEach((item) => item.remove());
   },
-  resetAll: function () {
+  resetAll: function (countryData) {
     cardFunctions.removeAll(".card");
     cardFunctions.removeAll(".expanded-card");
     cardFunctions.displayAllCards(countryData);
@@ -175,96 +124,67 @@ const buttonFunctions = {
       cardFunctions.displayAllCards(data);
     });
   },
-  addResetBtn: function (data) {
-    document
-      .getElementById("btn-bin")
-      .insertAdjacentHTML(
-        "beforeend",
-        `<button class="filter-btn" id="reset-btn">Reset</button>`
-      );
-    document.getElementById("reset-btn").addEventListener("click", function () {
-      buttonFunctions.resetButtons(".filter-btn");
-      cardFunctions.removeAll(".card");
-      cardFunctions.removeAll(".expanded-card");
-      cardFunctions.displayAllCards(data);
+  addAllBtns: function (array) {
+    array.forEach((set) => {
+      buttonFunctions.addFilterBtn(set[0], set[1], set[2]);
     });
   },
-  addAllBtns: function (array) {
-    array.forEach((set) =>
-      buttonFunctions.addFilterBtn(set[0], set[1], set[2])
-    );
-    buttonFunctions.addResetBtn(countryData);
+  buttonArray: function (countryData) {
+    const array = [
+      [
+        "americas-btn",
+        "Americas",
+        countryData.filter((country) => country.region == "Americas"),
+      ],
+      [
+        "europe-btn",
+        "Europe",
+        countryData.filter((country) => country.region == "Europe"),
+      ],
+      [
+        "asia-btn",
+        "Asia",
+        countryData.filter((country) => country.region == "Asia"),
+      ],
+      [
+        "africa-btn",
+        "Africa",
+        countryData.filter((country) => country.region == "Africa"),
+      ],
+      [
+        "oceania-btn",
+        "Oceania",
+        countryData.filter((country) => country.region == "Oceania"),
+      ],
+      [
+        "antarctica-btn",
+        "Antarctica",
+        countryData.filter((country) => country.subregion == "Antarctica"),
+      ],
+      [
+        "pop-greater-btn",
+        "Population &gt; 100,000,000",
+        countryData.filter((country) => country.population > 100000000),
+      ],
+      [
+        "pop-less-btn",
+        "Population &lt; 100,000,000",
+        countryData.filter((country) => country.population < 100000000),
+      ],
+      [
+        "area-greater-btn",
+        "Area &gt; 100,000",
+        countryData.filter((country) => country.area > 100000),
+      ],
+      [
+        "area-less-btn",
+        "Area &lt; 100,000",
+        countryData.filter((country) => country.area < 100000),
+      ],
+      ["reset-btn", "Reset", countryData],
+    ];
+    return array;
   },
 };
 
-const apiFunctions = {
-  propretyNameConverter: function (string, conversionDirection) {
-    let convertedString = Array.from(string);
-    if (conversionDirection == "toTitle") {
-      for (let i = 1; i++; ) {
-        if (i >= convertedString.length) {
-          break;
-        }
-        if (convertedString[i] == convertedString[i].toUpperCase()) {
-          convertedString[i] = ` ${convertedString[i]}`;
-        }
-      }
-      convertedString[0] = convertedString[0].toUpperCase();
-    } else if (conversionDirection == "toProperty") {
-      for (let i = 1; i++; ) {
-        if (i >= convertedString.length) {
-          break;
-        }
-        if (convertedString[i] == " ") {
-          convertedString[i] = "";
-        }
-      }
-      convertedString[0] = convertedString[0].toLowerCase();
-    } else if (
-      conversionDirection != "toProperty" &&
-      conversionDirection != "toTitle"
-    ) {
-      console.log(
-        `Error while executing the function propretyNameConverter: no conversionDirection specified`
-      );
-    }
-    return convertedString.toString().replaceAll(",", "");
-  },
-  fetchAPI: async function (url) {
-    try {
-      const response = await fetch(url);
-      if (response.status < 200 || response.status > 299) {
-        console.log(response.status);
-        throw Error(response.status);
-      } else {
-        const jsonData = await response.json();
-        return jsonData;
-      }
-    } catch (error) {
-      console.log(error);
-      alert(error);
-    }
-  },
-  undefinedCatch: function (string) {
-    if (string == undefined || string == "") {
-      return "None";
-    } else {
-      return string;
-    }
-  },
-  getUnnamedProperty: function (object, selectedProperty, targetProperty) {
-    let values = "";
-    let seperator = "";
-    for (const key in object[selectedProperty]) {
-      if (values == "") {
-        seperator = "";
-      } else {
-        seperator = ", ";
-      }
-      values = `${values}${seperator}${object[selectedProperty][key][targetProperty]}`;
-    }
-    return values;
-  },
-};
-
-export { cardFunctions, buttonFunctions, apiFunctions };
+export { buttonFunctions, cardFunctions };
