@@ -163,22 +163,22 @@ const buttonFunctions = {
       ],
       [
         "pop-greater-btn",
-        "Population &gt; 100,000,000",
+        "Population &gt; 100M",
         countryData.filter((country) => country.population > 100000000),
       ],
       [
         "pop-less-btn",
-        "Population &lt; 100,000,000",
+        "Population &lt; 100M",
         countryData.filter((country) => country.population < 100000000),
       ],
       [
         "area-greater-btn",
-        "Area &gt; 100,000",
+        "Area &gt; 100K km<sup>2</sup>",
         countryData.filter((country) => country.area > 100000),
       ],
       [
         "area-less-btn",
-        "Area &lt; 100,000",
+        "Area &lt; 100K km<sup>2</sup>",
         countryData.filter((country) => country.area < 100000),
       ],
       ["reset-btn", "Reset", countryData],
