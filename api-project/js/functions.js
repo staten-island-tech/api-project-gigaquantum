@@ -14,14 +14,14 @@ const cardFunctions = {
   </div>`
     );
   },
-  displayAllCards: function (data) {
+  displayAllCards: function (data, allData) {
     cardFunctions.removeAll(".expanded-card");
     data.forEach((obj) => {
       cardFunctions.addCard(obj.name, obj.flag, obj.demonym);
     });
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("click", function () {
-        cardFunctions.displayExpandedCard(card.id, data);
+        cardFunctions.displayExpandedCard(card.id, allData);
       });
     });
   },
@@ -81,7 +81,10 @@ const cardFunctions = {
     document.querySelectorAll(".remove-btn").forEach((btn) => {
       btn.addEventListener("click", function () {
         cardFunctions.displayAllCards(countryData);
-        buttonFunctions.addAllBtns(buttonFunctions.buttonArray(countryData));
+        buttonFunctions.addAllBtns(
+          countryData,
+          buttonFunctions.buttonArray(countryData)
+        );
       });
     });
   },
@@ -108,7 +111,7 @@ const buttonFunctions = {
     document.getElementById(btnID).style.color = "#e0e0e0";
     document.getElementById(btnID).style.backgroundColor = "#1f1f1f";
   },
-  addFilterBtn: function (btnID, btnText, data) {
+  addFilterBtn: function (btnID, btnText, data, allData) {
     buttonFunctions.resetButtons(".filter-btn");
     document
       .getElementById("btn-bin")
@@ -121,12 +124,12 @@ const buttonFunctions = {
       buttonFunctions.highlightButton(btnID);
       cardFunctions.removeAll(".card");
       cardFunctions.removeAll(".expanded-card");
-      cardFunctions.displayAllCards(data);
+      cardFunctions.displayAllCards(data, allData);
     });
   },
-  addAllBtns: function (array) {
+  addAllBtns: function (allData, array) {
     array.forEach((set) => {
-      buttonFunctions.addFilterBtn(set[0], set[1], set[2]);
+      buttonFunctions.addFilterBtn(set[0], set[1], set[2], allData);
     });
   },
   buttonArray: function (countryData) {
