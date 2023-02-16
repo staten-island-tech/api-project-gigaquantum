@@ -80,7 +80,7 @@ const cardFunctions = {
     );
     document.querySelectorAll(".remove-btn").forEach((btn) => {
       btn.addEventListener("click", function () {
-        cardFunctions.displayAllCards(countryData);
+        cardFunctions.displayAllCards(countryData, countryData);
         buttonFunctions.addAllBtns(
           countryData,
           buttonFunctions.buttonArray(countryData)
